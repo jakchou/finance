@@ -1,0 +1,10 @@
+server:
+  port: ${PORT:8080}
+  servlet.context-path: ${CONTEXTPATH:/shardingJdbc-service}
+
+spring:
+  datasource:
+    username: finance
+    password: zzzZZZ000
+    driver-class: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://rm-8vb2zrtvy2235lo75eo.mysql.zhangbei.rds.aliyuncs.com/finance
