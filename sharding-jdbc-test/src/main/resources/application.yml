@@ -5,6 +5,8 @@ logging:
     file: E:\home\aaa\ggg\dddd\ddd\shardingJdbc-service.log
 
 spring:
+  jpa:
+    show-sql: true
   datasource:
     username: finance
     password: zzzZZZ000
