@@ -4,5 +4,5 @@ import com.lvmm.shardingjdbc.entitys.OrderEntity;
 
 public interface OrderService {
 
-    OrderEntity findByOrderId();
+    OrderEntity findByOrderId(Long orderId);
 }

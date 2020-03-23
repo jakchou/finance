@@ -19,8 +19,10 @@ public class OrderController {
 
     @PostMapping("/findByOrderId")
     @ApiOperation("根据订单号查询订单")
-    public String findByOrderId() {
-        orderService.findByOrderId();
+    public String findByOrderId(Long orderId) {
+        orderService.findByOrderId(orderId);
         return "success";
     }
+
+
 }

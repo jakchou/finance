@@ -1,6 +1,9 @@
 package com.lvmm.shardingjdbc.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -15,6 +18,7 @@ public class OrderItemEntity {
     private Long orderItemId;
     @Column(name = "pay_amount")
     private BigDecimal payAmount;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "order_id")
     private OrderEntity orderEntity;

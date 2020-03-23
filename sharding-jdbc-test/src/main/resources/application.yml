@@ -1,19 +1,52 @@
 server:
   port: ${PORT:8080}
   servlet.context-path: ${CONTEXTPATH:/shardingJdbc-service}
-logging:
-    file: E:\home\aaa\ggg\dddd\ddd\shardingJdbc-service.log
+
 
 spring:
   jpa:
     show-sql: true
-  datasource:
-    username: finance
-    password: zzzZZZ000
-    DriverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://rm-8vb2zrtvy2235lo75eoz.mysql.zhangbei.rds.aliyuncs.com/finance?useUnicode=true&characterEncoding=utf-8&useSSL=false
-    type: com.alibaba.druid.pool.DruidDataSource
-    initialSize: 5
-    minIdle: 5
-    maxActive: 20
-    maxWait: 60000
+  shardingsphere:
+    props:
+      sql:
+        show: true
+    datasource:
+      names: ds0,ds1
+      ds0:
+        type: com.zaxxer.hikari.HikariDataSource
+        username: finance
+        password: zzzZZZ000
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://rm-8vb2zrtvy2235lo75eoz.mysql.zhangbei.rds.aliyuncs.com/finance?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      ds1:
+        type: com.zaxxer.hikari.HikariDataSource
+        username: finance
+        password: zzzZZZ000
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        jdbc-url: jdbc:mysql://rm-8vb2zrtvy2235lo75eoz.mysql.zhangbei.rds.aliyuncs.com/sharding-jdbc?useUnicode=true&characterEncoding=utf-8&useSSL=false
+      shardingsphere:
+        tables:
+          etl_order:
+            actual-data-nodes: ds0.etl_order$->{0..4},ds1.etl_order$->{5..9}
+            databaseStrategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: ds$->{order_id % 2}
+            table-strategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: etl_order${order_id % 100}
+          etl_order_item:
+            actual-data-nodes: ds0.etl_order_item$->{0..4},ds1.etl_order_item$->{5..9}
+            databaseStrategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: ds$->{order_id % 2}
+            table-strategy:
+              inline:
+                sharding-column: order_id
+                algorithm-expression: etl_order_item${order_id % 100}
+        bindingTables:
+          - etl_order,etl_order_item
+
+

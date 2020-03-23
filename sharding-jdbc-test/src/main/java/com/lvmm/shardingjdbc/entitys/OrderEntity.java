@@ -1,10 +1,16 @@
 package com.lvmm.shardingjdbc.entitys;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.lvmm.shardingjdbc.common.CommonEnum;
 import lombok.Data;
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -23,6 +29,17 @@ public class OrderEntity {
     @Column(name = "pay_amount")
     private BigDecimal payAmount;
 
+    @Enumerated(EnumType.STRING )
+    @Column(name = "order_status")
+    private CommonEnum.OrderStatus order_status;
+
+    @Column(name = "create_time")
+    @Temporal(TemporalType.DATE)
+    @CreatedDate
+    private Date createTime;
+
+    @JsonIgnore
+    @NotFound(action= NotFoundAction.IGNORE)
     @OneToMany(mappedBy = "orderEntity")
     private List<OrderItemEntity> orderItems;
 

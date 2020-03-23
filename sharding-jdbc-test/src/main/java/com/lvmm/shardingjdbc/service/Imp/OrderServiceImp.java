@@ -6,14 +6,17 @@ import com.lvmm.shardingjdbc.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class OrderServiceImp implements OrderService {
     @Autowired
     private OrderRespository orderRespository;
     @Override
-    public OrderEntity findByOrderId() {
-        OrderEntity order= orderRespository.getOne(1001L);
+    public OrderEntity findByOrderId(Long orderId) {
+        Optional<OrderEntity> order = orderRespository.findById(orderId);
+        System.out.println("hello");
         System.out.println(order);
-        return order;
+        return null;
     }
 }
