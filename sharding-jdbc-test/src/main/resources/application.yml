@@ -24,29 +24,26 @@ spring:
         password: zzzZZZ000
         driver-class-name: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://rm-8vb2zrtvy2235lo75eoz.mysql.zhangbei.rds.aliyuncs.com/sharding-jdbc?useUnicode=true&characterEncoding=utf-8&useSSL=false
-      shardingsphere:
-        tables:
-          etl_order:
-            actual-data-nodes: ds0.etl_order$->{0..4},ds1.etl_order$->{5..9}
-            databaseStrategy:
-              inline:
-                sharding-column: order_id
-                algorithm-expression: ds$->{order_id % 2}
-            table-strategy:
-              inline:
-                sharding-column: order_id
-                algorithm-expression: etl_order${order_id % 100}
-          etl_order_item:
-            actual-data-nodes: ds0.etl_order_item$->{0..4},ds1.etl_order_item$->{5..9}
-            databaseStrategy:
-              inline:
-                sharding-column: order_id
-                algorithm-expression: ds$->{order_id % 2}
-            table-strategy:
-              inline:
-                sharding-column: order_id
-                algorithm-expression: etl_order_item${order_id % 100}
-        bindingTables:
-          - etl_order,etl_order_item
 
-
+    sharding:
+      tables:
+        etl_order:
+          actualDataNodes: ds0.etl_order$->{0..4},ds1.etl_order$->{5..9}
+          databaseStrategy:
+            inline:
+              shardingColumn: order_id
+              algorithmExpression: ds$->{order_id % 2}
+          tableStrategy:
+            inline:
+              shardingColumn: order_id
+              algorithmExpression: etl_order$->{order_id % 10}
+        etl_order_item:
+          actualDataNodes: ds0.etl_order_item$->{0..4},ds1.etl_order_item$->{5..9}
+          databaseStrategy:
+            inline:
+              shardingColumn: order_id
+              algorithmExpression: ds$->{order_id % 2}
+          tableStrategy:
+            inline:
+              shardingColumn: order_id
+              algorithmExpression: etl_order_item$->{order_id % 10}
