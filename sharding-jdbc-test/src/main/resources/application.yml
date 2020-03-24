@@ -1,7 +1,8 @@
 server:
-  port: ${PORT:8080}
+  port: ${PORT:8088}
   servlet.context-path: ${CONTEXTPATH:/shardingJdbc-service}
-
+logging:
+  file: ${LOGGING_FILE:sharding-jdbc.log}
 
 spring:
   jpa:
@@ -18,12 +19,20 @@ spring:
         password: zzzZZZ000
         driver-class-name: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://rm-8vb2zrtvy2235lo75eoz.mysql.zhangbei.rds.aliyuncs.com/finance?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        hikari:
+          connection-timeout: 30000
+          idle-timeout: 600000
+          max-lifetime: 1800000
       ds1:
         type: com.zaxxer.hikari.HikariDataSource
         username: finance
         password: zzzZZZ000
         driver-class-name: com.mysql.cj.jdbc.Driver
         jdbc-url: jdbc:mysql://rm-8vb2zrtvy2235lo75eoz.mysql.zhangbei.rds.aliyuncs.com/sharding-jdbc?useUnicode=true&characterEncoding=utf-8&useSSL=false
+        hikari:
+          connection-timeout: 30000
+          idle-timeout: 600000
+          max-lifetime: 1800000
 
     sharding:
       tables:
