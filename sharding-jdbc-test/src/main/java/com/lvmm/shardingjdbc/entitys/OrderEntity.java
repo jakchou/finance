@@ -20,7 +20,7 @@ import java.util.List;
 public class OrderEntity {
     @Id
     @Column(name = "order_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderId;
     @Column(name = "product_id")
     private Long productId;

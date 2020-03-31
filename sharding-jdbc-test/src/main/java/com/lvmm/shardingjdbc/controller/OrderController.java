@@ -24,5 +24,11 @@ public class OrderController {
         return "success";
     }
 
+    @PostMapping("/saveOrder")
+    @ApiOperation("保存订单")
+    public String saveOrder(Long orderId) {
+        orderService.saveOrder(orderId);
+        return "success";
+    }
 
 }

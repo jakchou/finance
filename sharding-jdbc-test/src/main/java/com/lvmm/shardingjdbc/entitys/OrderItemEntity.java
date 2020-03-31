@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 public class OrderItemEntity {
     @Id
     @Column(name = "order_item_id")
-    @GeneratedValue(strategy = GenerationType.AUTO)
+   // @GeneratedValue(strategy = GenerationType.AUTO)
     private Long orderItemId;
     @Column(name = "pay_amount")
     private BigDecimal payAmount;
