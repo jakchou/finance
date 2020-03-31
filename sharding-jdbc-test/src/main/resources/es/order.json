@@ -1,0 +1,31 @@
+{
+  "properties": {
+    "order_id": {
+      "type": "long",
+      "index": "false"
+    },
+    "product_id": {
+      "type": "long",
+      "index": "false"
+    },
+    "customer_id": {
+      "type": "long",
+      "index": "false"
+
+    },
+    "pay_amount": {
+      "type": "double"
+
+    },
+    "order_status": {
+      "type": "text",
+      "analyzer": "ik_max_word"
+
+    },
+    "create_time": {
+      "type": "date",
+      "format": "strict_date_optional_time"
+
+    }
+  }
+}

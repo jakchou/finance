@@ -60,3 +60,9 @@ spring:
               shardingColumn: order_id
               preciseAlgorithmClassName: com.lvmm.shardingjdbc.shardingJdbc.StandTableShardingAlgorithm
               rangeAlgorithmClassName: com.lvmm.shardingjdbc.shardingJdbc.StandTableShardingAlgorithm
+  data:
+    elasticsearch:
+      cluster-name: my-application
+      cluster-nodes: 39.101.201.47:9300
+      repositories:
+        enabl: true
