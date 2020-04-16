@@ -5,6 +5,7 @@ import com.lvmm.shardingjdbc.entitys.OrderEntity;
 import com.lvmm.shardingjdbc.entitys.OrderItemEntity;
 import com.lvmm.shardingjdbc.respository.OrderItemRespository;
 import com.lvmm.shardingjdbc.respository.OrderRespository;
+import com.lvmm.shardingjdbc.service.FileService;
 import com.lvmm.shardingjdbc.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -21,6 +22,8 @@ public class OrderServiceImp implements OrderService {
     private OrderRespository orderRespository;
     @Autowired
     private OrderItemRespository itemRespository;
+    @Autowired
+    private FileService fileService;
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
     @Override
@@ -49,6 +52,9 @@ public class OrderServiceImp implements OrderService {
         order.setOrderItems(items);
         orderRespository.save(order);
         itemRespository.save(item);
+        fileService.saveFIle();
+
+
 
     }
 }

@@ -33,7 +33,10 @@
             <artifactId>sharding-jdbc-spring-boot-starter</artifactId>
             <version>4.0.0</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>org.elasticsearch.client</groupId>
@@ -106,19 +109,18 @@
         </dependency>
 
     </dependencies>
-    <repositories>
-        <repository>
-             <id>maven-aliyun</id>
-             <name>Maven Aliyun Mirror</name>
-             <releases>
-                 <enabled>true</enabled>
-             </releases>
-             <url>http://maven.aliyun.com/nexus/content/groups/public</url>
-            <snapshots>
-                <enabled>true</enabled>
-                <updatePolicy>always</updatePolicy>
-                <checksumPolicy>fail</checksumPolicy>
-            </snapshots>
-             </repository>
-         </repositories>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>

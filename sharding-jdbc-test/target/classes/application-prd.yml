@@ -5,6 +5,7 @@ logging:
   file: ${LOGGING_FILE:sharding-jdbc.log}
 
 spring:
+  profiles: prd
   jpa:
     show-sql: true
   shardingsphere:
@@ -66,20 +67,3 @@ spring:
       cluster-nodes: 39.101.201.47:9300
       repositories:
         enabl: true
-
-
-management:
-  server:
-    port: 9001
-  endpoints:
-    web:
-      base-path: /monitor
-      exposure:
-        include: '*'
-  endpoint:
-    health:
-      show-details: always
-    shutdown:
-      enabled: false
-file:
-  downloaduil: /opt/soft
