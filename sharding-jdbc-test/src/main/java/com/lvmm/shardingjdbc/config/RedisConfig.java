@@ -10,7 +10,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 @Configuration
-@PropertySource(value = "redis.properties")
+//@PropertySource(value = "redis.properties")
 public class RedisConfig {
 
     @Bean

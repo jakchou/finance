@@ -41,7 +41,7 @@ public class OrderController {
     @PostMapping("/syncOrder2es")
     @ApiOperation("订单同步es")
     public String syncOrder2es(List<Long> orderIds){
-        eSOrderService.sycnOrderByOrderId();
+       // eSOrderService.sycnOrderByOrderId();
         return "success";
     }
 

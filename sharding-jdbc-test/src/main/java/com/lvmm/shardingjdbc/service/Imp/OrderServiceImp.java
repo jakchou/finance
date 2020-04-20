@@ -3,6 +3,7 @@ package com.lvmm.shardingjdbc.service.Imp;
 import com.lvmm.shardingjdbc.common.CommonEnum;
 import com.lvmm.shardingjdbc.entitys.OrderEntity;
 import com.lvmm.shardingjdbc.entitys.OrderItemEntity;
+import com.lvmm.shardingjdbc.es.service.ESOrderService;
 import com.lvmm.shardingjdbc.respository.OrderItemRespository;
 import com.lvmm.shardingjdbc.respository.OrderRespository;
 import com.lvmm.shardingjdbc.service.FileService;
@@ -26,10 +27,12 @@ public class OrderServiceImp implements OrderService {
     private FileService fileService;
     @Autowired
     private RedisTemplate<String,Object> redisTemplate;
+    @Autowired
+    private ESOrderService esOrderService;
     @Override
     public OrderEntity findByOrderId(Long orderId) {
         Optional<OrderEntity> order = orderRespository.findById(orderId);
-        //redisTemplate.opsForValue().set("username","zhouzhengzheng");
+        redisTemplate.opsForValue().set("username","zhouzhengzheng");
         System.out.println("hello");
         System.out.println(order);
         return null;
@@ -53,7 +56,7 @@ public class OrderServiceImp implements OrderService {
         orderRespository.save(order);
         itemRespository.save(item);
         fileService.saveFIle();
-
+        esOrderService.sycnOrder(order);
 
 
     }
