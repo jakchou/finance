@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.macro.mall.tiny.modules.buss.mapper.UmsNodeChangeDetailMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.macro.mall.tiny.modules.buss.model.UmsNodeChangeDetail">
+        <id column="id" property="id" />
+        <result column="submit_id" property="submitId" />
+        <result column="title" property="title" />
+        <result column="name" property="name" />
+        <result column="description" property="description" />
+        <result column="content" property="content" />
+        <result column="attributes" property="attributes" />
+        <result column="sort" property="sort" />
+        <result column="create_person" property="createPerson" />
+        <result column="create_time" property="createTime" />
+        <result column="column_id" property="columnId" />
+        <result column="node_id" property="nodeId" />
+        <result column="change_type" property="changeType" />
+        <result column="category_type" property="categoryType" />
+        <result column="STATUS" property="status" />
+        <result column="process_status" property="processStatus" />
+    </resultMap>
+
+</mapper>
