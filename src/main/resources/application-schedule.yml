@@ -1,0 +1,38 @@
+spring:
+  quartz:
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: N7D45048
+            instanceId: AUTO
+            batchTriggerAcquisitionMaxCount: 5
+            skipUpdateCheck: true
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: ''
+            isClustered: true
+            clusterCheckinInterval: 15000
+            useProperties: false
+            dataSource: myDS
+            acquireTriggersWithinLock: true
+          dataSource:
+            myDS:
+              driver: ${spring.datasource.driver-class-name}
+              URL: ${spring.datasource.url}
+              user: ${spring.datasource.username}
+              password: ${spring.datasource.password}
+              maxConnections: '20'
+              provider: hikaricp
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: '20'
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    job-store-type: jdbc
+    auto-startup: false
+    wait-for-jobs-to-complete-on-shutdown: true
+    overwrite-existing-jobs: true
+    jdbc:
+      initialize-schema: never
