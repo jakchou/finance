@@ -1,0 +1,2 @@
+lcp:
+  noAuthPaths: /upload/download_files:POST
